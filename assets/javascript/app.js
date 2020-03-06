@@ -7,7 +7,7 @@ $(window).on("load", function() {
 });
 
 
-
+// psuedocode -- LET'S GO!
 // sample buttons there to pull data
 // any new buttons input go to gifButtons after clicking add-gif button
 // images and ratings go to gifDisplay div
@@ -19,23 +19,51 @@ var cartoons = ["Teen Titans", "Amazing World of Gumball", "Wonderpets", "One Pu
 function displayGiphy() {
 
 var cartoon = $(this).attr("data-name");
-var queryURL = "https://www.api.giphy.com/v1/gifs/search?q=" + cartoon + "&api_key=u5PRDLT2fc5oP3bn6Y4eG1c88dA0STN2&limit=10&rating=g";
+var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=BkaUZZWcFij6J7AoQj3WtPb1R2p9O6V9&q=" + cartoon + "&limit=10&rating=g";
 
 $.ajax({
     url: queryURL,
     method: "GET"
-  }).done(function(response) {
+  }).then(function(response) {
 
-    var cartoonDiv = $("<div class='cartoon'>");
+    console.log(queryURL);
+    console.log(response);
 
-    var rating = response.rating;
-    var ratingDisplay = $("<p>").text("Rating: " + rating);
-    cartoonDiv.append(ratingDisplay);
+    // shortcut to cleanup typing response.data (and fits better in for loop with [i])
+    var results = response.data
 
-    var showImage = response.images.fixed_height.url;
-    var imageDisplay = $("<img>").attr("src", showImage);
-    cartoonDiv.append(imageDisplay);
-    });
+    for (var i = 0; i < results.length; i++) {
+
+        var cartoonDiv = $("<div>");
+        var getRating = $("<p>").text("Rating: " + results[i].rating);
+
+        var showImage = $("<img>");
+        showImage.attr("src", results[i].images.fixed_height_still.url);
+
+        // for the still/animate
+        // showImage.attr("class", "gif");
+        // showImage.data("state", "still");
+
+        cartoonDiv.append(showImage);
+        cartoonDiv.append(getRating);
+
+        $("#gifDisplay").prepend(cartoonDiv);
+
+
+        // still/animate function
+        // $(".gif").on("click", function() {
+        // var state = $(this).attr("data-state");
+        // if (state === "still") {
+        //     $(this).attr("src", $(this).attr("data-animate"));
+        //     $(this).attr("data-state", "animate");
+        //     showImage.attr("src", results[i].images.fixed_height.url);
+        //   } else {
+        //     $(this).attr("src", $(this).attr("data-still"));
+        //     $(this).attr("data-state", "still");
+        //   }
+        // });
+    }
+});
 }
 
 function buttonMaker() {
