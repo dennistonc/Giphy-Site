@@ -1,1 +1,40 @@
-/* font-family: 'Roboto', sans-serif; */
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.flex-parent {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#gifButtons {
+    text-align: center;
+}
+
+.cartoon {
+    margin: 10px;
+    background-color: #5ab3d1;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 7px;
+}
+
+#add-gif {
+    background-color: #5ab3d1;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    color: #ffffff;
+    padding: 7px;
+}
+
+#fillInForm {
+    text-align: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#gifDisplay {
+    margin-left: auto;
+    margin-right: auto;
+}

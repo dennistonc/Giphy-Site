@@ -14,7 +14,7 @@ $(window).on("load", function() {
 // frozen gifs until clicked on
 
 
-var cartoons = ["Teen Titans", "Amazing World of Gumball", "Wonderpets", "One Punch Man"]
+var cartoons = ["Teen Titans", "Amazing World of Gumball", "The Simpsons", "One Punch Man", "The Powerpuff Girls", "Demon Slayer"]
 
 function displayGiphy() {
 
@@ -23,7 +23,7 @@ var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=BkaUZZWcFij6J7AoQj3
 
 $.ajax({
     url: queryURL,
-    method: "GET"
+    method: "GET" 
   }).then(function(response) {
 
     console.log(queryURL);
@@ -49,6 +49,7 @@ $.ajax({
 
         $("#gifDisplay").prepend(cartoonDiv);
 
+        // how to replace gifs with a new set instead of purely prepending?
 
         // still/animate function
         // $(".gif").on("click", function() {
@@ -72,7 +73,7 @@ function buttonMaker() {
         var newButton = $("<button>");
         newButton.addClass("cartoon");
         newButton.attr("data-name", cartoons[i]);
-        newButton.text(cartoons[i]);
+        newButton.text(cartoons[i])
         $("#gifButtons").append(newButton);
     }
 }
