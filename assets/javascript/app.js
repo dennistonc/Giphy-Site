@@ -14,7 +14,7 @@ $(window).on("load", function() {
 // frozen gifs until clicked on
 
 
-var cartoons = ["Teen Titans", "Amazing World of Gumball", "The Simpsons", "One Punch Man", "The Powerpuff Girls", "Demon Slayer"]
+var cartoons = ["Teen Titans", "Amazing World of Gumball", "The Simpsons", "One Punch Man", "The Powerpuff Girls", "Steven Universe", "Aggretsuko", "Futurama"]
 
 function displayGiphy() {
 
@@ -38,31 +38,31 @@ $.ajax({
         var getRating = $("<p>").text("Rating: " + results[i].rating);
 
         var showImage = $("<img>");
-        showImage.attr("src", results[i].images.fixed_height_still.url);
 
-        // for the still/animate
-        // showImage.attr("class", "gif");
-        // showImage.data("state", "still");
+        showImage.attr("src", results[i].images.fixed_height_still.url);
+        showImage.attr("data-still", results[i].images.fixed_height_still.url);
+		showImage.attr("data-animate", results[i].images.fixed_height.url)
+		showImage.attr("data-state", "still")
+		showImage.addClass("gif");
 
         cartoonDiv.append(showImage);
         cartoonDiv.append(getRating);
 
         $("#gifDisplay").prepend(cartoonDiv);
 
-        // how to replace gifs with a new set instead of purely prepending?
+        // how to replace gifs with a new set instead of purely prepending? -- tried .empty, tried .html
 
         // still/animate function
-        // $(".gif").on("click", function() {
-        // var state = $(this).attr("data-state");
-        // if (state === "still") {
-        //     $(this).attr("src", $(this).attr("data-animate"));
-        //     $(this).attr("data-state", "animate");
-        //     showImage.attr("src", results[i].images.fixed_height.url);
-        //   } else {
-        //     $(this).attr("src", $(this).attr("data-still"));
-        //     $(this).attr("data-state", "still");
-        //   }
-        // });
+        $(".gif").on("click", function() {
+        var state = $(this).attr("data-state");
+        if (state === "still") {
+            $(this).attr("src", $(this).attr("data-animate"));
+            $(this).attr("data-state", "animate");
+            } else {
+            $(this).attr("src", $(this).attr("data-still"));
+            $(this).attr("data-state", "still");
+          }
+        });
     }
 });
 }

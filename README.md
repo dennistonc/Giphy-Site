@@ -1,5 +1,4 @@
 # Giphy-Site
-###### Giphy API HW
 
 **Week 6 Homework**
 *About This Homework*
