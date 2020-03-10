@@ -49,23 +49,26 @@ $.ajax({
         cartoonDiv.append(getRating);
 
         $("#gifDisplay").prepend(cartoonDiv);
+        $("#gifDisplay").scrollTop(0);
 
         // how to replace gifs with a new set instead of purely prepending? -- tried .empty, tried .html
-
-        // still/animate function
-        $(".gif").on("click", function() {
-        var state = $(this).attr("data-state");
-        if (state === "still") {
-            $(this).attr("src", $(this).attr("data-animate"));
-            $(this).attr("data-state", "animate");
-            } else {
-            $(this).attr("src", $(this).attr("data-still"));
-            $(this).attr("data-state", "still");
-          }
-        });
     }
 });
 }
+
+// still/animate function
+$(document).on("click", ".gif", function(event) {
+    event.preventDefault();
+        
+var state = $(this).attr("data-state");
+if (state === "still") {
+    $(this).attr("src", $(this).attr("data-animate"));
+    $(this).attr("data-state", "animate");
+} else {
+    $(this).attr("src", $(this).attr("data-still"));
+    $(this).attr("data-state", "still");
+}
+});
 
 function buttonMaker() {
     $("#gifButtons").empty();
@@ -85,6 +88,7 @@ $("#add-gif").on("click", function(event) {
     cartoons.push(cartoon);
 
 buttonMaker();
+$("#gif-input").val("");
 });
 
 $(document).on("click", ".cartoon", displayGiphy);
