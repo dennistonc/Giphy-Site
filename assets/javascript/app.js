@@ -14,7 +14,7 @@ $(window).on("load", function() {
 // frozen gifs until clicked on
 
 
-var cartoons = ["Teen Titans", "Amazing World of Gumball", "The Simpsons", "One Punch Man", "The Powerpuff Girls", "Steven Universe", "Aggretsuko", "Futurama"]
+var cartoons = ["Teen Titans", "Amazing World of Gumball", "The Simpsons", "Courage the Cowardly Dog", "The Powerpuff Girls", "Steven Universe", "Aggretsuko", "Futurama", "Totally Spies"]
 
 function displayGiphy() {
 
@@ -31,6 +31,8 @@ $.ajax({
 
     // shortcut to cleanup typing response.data (and fits better in for loop with [i])
     var results = response.data
+
+    $("#gifDisplay").empty();
 
     for (var i = 0; i < results.length; i++) {
 
@@ -50,8 +52,6 @@ $.ajax({
 
         $("#gifDisplay").prepend(cartoonDiv);
         $("#gifDisplay").scrollTop(0);
-
-        // how to replace gifs with a new set instead of purely prepending? -- tried .empty, tried .html
     }
 });
 }
